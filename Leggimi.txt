@@ -1,0 +1,258 @@
+Leggimi.txt per l’App Rest Web Panel Evolution by Fix
+
+
+- 1 - Dichiarazione di licenza associata a un programma software ………………………….
+- 2 - Premessa.……………………………………………..………………………………………
+- 3 - Funzionalità……………………………………………..…………….………………………
+- 4 - Requisiti di installazione e predisposizione dell’ambiente operativo……………………
+- 5 - File di configurazione (serv_inc.php e config.php) da editare…………………………..
+- 6 - Configurazione del plug-in Rest Server sulla regia RadioDJ
+- 7 - Download e installazione di XAMPP……………..………………………………………...
+- 8 - Scegliere il gestore di database vecchio o il nuovo MySQL di XAMPP…..……………
+- 9 - Copia delle ArtWork (copertine dei file mp3) dalla cartella della regia alla cartella della Web App
+
+- 10 - Come avviare le applicazioni in modalità amministratore…………...……..……………
+- 11 - Collaudare l’App Rest Web Panel e soluzione dei problemi
+- 12 - Come ottenere le migliori prestazioni con l’App…………………………………………
+- 13 - Modalità e ordine di avvio delle applicazioni RadioDJ, Xampp e dell’App Rest Web Panel Evolution
+
+- 14 - Connessioni tra mixer e scheda audio per la diretta con Rest Web Panel e speaker remoto
+- 15 - Procedura e predisposizione per la trasmissione con lo speaker remoto………………
+
+- 16 - Limitare l’accesso a phpMyAdmin nel tuo ambiente XAMPP solo al localhost.………
+- 17 - Utilizzare una password forte per l’account root di MySQL in XAMPP…..….……...…
+
+- 18 - Limitare l’accesso all’App Rest Web Panel Evolution………...…………………………
+
+------------------------------------------------------------------------------------------------------------------------
+
+- 1 - Dichiarazione di licenza associata a un programma software ………………………….
+
+Versione 3, 29 giugno 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Tutti i diritti riservati.
+
+Questo programma è un software libero: puoi ridistribuirlo e/o modificarlo
+sotto i termini della Licenza Pubblica Generale GNU, come pubblicata dalla
+Free Software Foundation, sia la versione 3 della Licenza o 
+qualunque versione successiva.
+
+Questo programma viene distribuito con la speranza che sia utile,
+ma SENZA ALCUNA GARANZIA; senza nemmeno la garanzia implicita di
+COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Consulta la
+Licenza Pubblica Generale GNU per ulteriori dettagli.
+
+Per la Licenza Pubblica Generale GNU, vedi <https://www.gnu.org/licenses/>.
+
+
+
+- 2 - Premessa
+Lo sviluppatore fornisce il software gratuitamente e chiede agli utenti, se hanno apprezzato il propositi del pannello di controllo remoto, di fare una donazione volontaria per sostenere lo sviluppo continuo del’App ed in questo caso non è richiesta la donazione per utilizzare il software. Si declina ogni responsabilità per danni causati dall’utilizzo del software o da una configurazione errata dell’ambiente operativo, ivi compresi errori di redazione contenute nel file leggimi.txt. L’App Rest Web Panel Evolution non è né proprietà di RadioDJ né proprietà di società collegata a RadioDJ. Per qualsiasi dubbio circa l’installazione e/o configurazione, siete pregati di contattare prima lo sviluppatore, o collegarsi al forum di RadioDJ dove è stato aperto un topic all’indirizzo: https://www.radiodj.ro/community/index.php/topic,17558.0.html. Lo stesso topic è raggiungibile direttamente dall’ App seguendo il link “ASSISTANCE”.
+
+L’interfaccia Rest Web Panel Evolution è un ottimo strumento per le web radio e le radio on-air, che rende disponibili molte funzionalità della regia all’interno del pannello di controllo remoto, tramite connessione internet e protocollo HTTP. L’interfaccia è stata realizzata da Fix un appassionato del mondo dell’informatica che ha studiato e analizzato diversi linguaggi web (HTML, CSS, PHP, SQL, JSON) e analizzato diverse interfacce con licenza GPL . L’interfaccia Rest Web Panel Evolution permette di effettuare una trasmissione a distanza con uno o più speaker situati in una località remota rispetto al luogo in cui si trova la regia RadioDJ. Lo speaker remoto dispone di un pannello di controllo Web accessibile, tramite browser web all’indirizzo: http://IP-REMOTO/esempio-radiodj-esempio/. Per le funzionalità dell’App Rest Web Panel Evolution vedi Funzionalità al Capitolo - 3 -
+
+- 3 - Funzionalità
+L’interfaccia Rest Web Panel Evolution offre le seguenti funzionalità:
+1) visualizzazione sulla parte alta di sx dei counter intro, outro, remaining, elapsed, duration, della foto della Cover, dell’ artista, del titolo e dell’anno. Inoltre, sulla parte centrale sx viene visualizzato il now playing ed il next track come artista e titolo. Il next track viene visualizzato quando il remaining è inferiore a 40’’.
+2) visualizzazione sulla parte bassa di sx è un’area adibita alla playlist in cui trovano posto le tracce. Quest’ultime forniscono informazioni circa l’artista e il titolo, il counter duration, l’intro, l’outro, l’end_of_the_track l’anno, il SongID ed una miniatura della cover del file mp3.
+3) ricerca delle tracce audio all'interno del database, ovvero Musica, stationID, Jingle, Commerciali, poi si può scegliere il genere musicale e tenere d’occhio anche il parametro Count played. Quando questo parametro è uguale zero (count played = 0), indica una traccia mai riprodotta. Per il resto il form di ricerca è molto intuitivo e semplice da usare pur permettendo di articolare la query al database. Inoltre, il form è dotato di memoria circa l’ultima parola chiave inserita e di un sistema di progressive searching e cioè per  ogni carattere inserito viene effettuata una query. Tuttavia, è stato mantenuto operativo il tasto search per questioni di compatibilità con i browser che hanno javascript disattivato;
+4) costruzione di una playlist (on-the-fly) per la diretta con speaker remoto. Dopo avere trovato le tracce tramite la sezione dx “search” si può costruire la playlist, impilando le tracce in modalità top o bottom. Per impilare una traccia in top è necessario che nell’area playlist ci siano in coda almeno 2 tracce, in caso contrario la traccia verrà inserita sempre in modalità bottom;
+5) indicazione numerica progressiva dell’ordine delle tracce più l’indicazione dell’ultimo elemento in playlist. Ciò permette di sapere quante tracce sono presenti nella nostra playlist automatica (tracks rotation) o on-the-fly;
+6) visualizzazione della cronologia delle tracce riprodotte in modalità discendente;
+7) visualizzazione della classifica (hit interna) delle tracce più riprodotte;
+8) cancellazione dell'intera playlist tramite il pulsante CANC. PLAYLIST;
+9) cancellazione delle singole traccie audio, tramite il quadratino rosso con la X;
+10) cancellazione della cronologia delle tracce riprodotte;
+11) catalogo delle tracce ordinate per artista o gruppo presenti sul Database;
+12) modifica dello stato AUTODJ/MANUAL. Lo stato AUTODJ (tasto di colore verde) permette di generare delle playlist automatiche tramite il tracks rotation e questa modalità è indicata per le trasmissioni senza speaker remoto o per rotazioni musicali, mentre lo stato MANUAL (tasto di colore rosso) richiede il caricamento manuale delle tracce e delle playlist ed è indicato per le trasmissioni con lo speaker remoto. Durante la diretta con speaker remoto è necessario commutare in MANUAL (tasto di colore rosso) in modo tale da avere lo spazio playlist libero solo per le playlist on-the-fly. Questa impostazione evita che le playlist on-the-fly si possano mischiare con quelle automatiche prodotte con tracks rotation. Passando da AUTODJ a MANUAL è possibile che lo spazio playlist non sia ancora libero, ma contenga alcune tracce prodotte dal tracks rotation. Se volete pulire l’area playlist selezionate il tasto  CANC. PLAYLIST;
+13) modificare lo stato AUTOMATED/ASSISTED. In AUTOMATED le tracce della playlist vengono riprodotte in automatico, mentre in modalità ASSISTED è necessario l’intervento dell’operatore per avviare la traccia. Durante la trasmissione in diretta lo speaker remoto può decidere di selezionare la modalità AUTOMATED (tasto colore verde), lasciando che la regia intervenga nell’inserimento delle tracce in diretta, oppure in modalità ASSISTED (tasto colore rosso) per lasciare allo speaker la possibilità di inserire le tracce rispettando i fade-out delle tracce musicali e i tempi di intervento vocale dello speaker;
+14) riprodurre qualsiasi traccia dalla playlist automatica o on-the-fly senza seguire l'ordine prestabilito. E’ necessario cliccare sull’area che riporta la numerazione progressiva della traccia ed l’operazione sarà effettuata;
+15) mettere una traccia in pausa;
+16) mettere una traccia in restart;
+17) avviare una traccia dopo l’intro;
+18) mettere una traccia in stop;
+19) mettere una traccia in play;
+20) songs details è un riepilogo dettagliato delle informazioni sulla traccia in riproduzione;
+21) instant player da 1 a 24. Permette di riprodurre delle tracce in modo instantaneo e che si sovrappongono all’audio che si sta riproducendo. Per usufruire di questa modalità è necesssario pre-impostatare sulla regia le 24 tracce che dovranno andare in diretta;
+22) pulsante MICROPHONE-OFF/ON-AIR per abilitare l’ingresso audio della regia RadioDJ. E’ necessario un servizio VOIP (chat Facebook, Skype o altro) e le connessioni tra mixer fisico e la scheda audio;
+
+
+- 4 - Requisiti di installazione e predisposizione dell’ambiente operativo
+1) avere già installato l’applicazione RadioDJ 1.8.2.0 o superiore (2.0.X.X) sul PC che fungerà da regia;
+2) installare Xampp versione 7.1.26 per Windows 10/11 sul pc regia. L’App che andrete ad installare non è stata verificata su una versione di PHP superiore alla 7.1.26, quindi, attenetevi alla versione di Xampp consigliata. Non cercate il massimo della tecnologia installando Xampp 8.2.12, poiché l’app non è validata per questa versione ed in tale caso  l’App potrebbe non funzionare correttamente.
+Xampp è un ambiente integrato che ci permette di fruire delle funzionalità del gestore di database MariaDB(Mysql), di PHP, di un server Web APACHE, ecc. I pacchetti Xampp che dovrete installare necessariamente sono: PHP e Apache, mentre per il pacchetto MariaDB(Mysql) che è il gestore di database MySql, l’installazione non sarà necessaria se continuerete ad utilizzare l’attuale (il vostro) gestore di database e cioè quello che sta utilizzando la regia RadioDJ. Sembra scontato dirlo, ma in questo caso il gestore di database MySql non va installato. Se avete installato Xampp anche con il gestore di database MariaDB e non volete più utilizzare il vostro attuale gestore di database, non potrete mantenere l’attuale connessione al database, quindi, dovrete rimuovere/disinstallare il vecchio gestore di database e sconfigurare l’utility DatabaseSetup.exe, poi seguire la procedura del Capitolo 8;
+3) L’app è stata realizzata rispettivamente in due versioni; 1 per RadioDJ 1.8.2.0 e 2 per le versioni superiori. Perchè questa distinzione? Sono state riscontrate alcune differenze di costruzione nel database che non permettevano un App unica. La differenza consiste nel nome della colonna diverso e che contiene le copertine dei file mp3. Il database ha la tabella “songs” con il nome del campo “Album_Art” nella versione di RadioDJ 1.8.2.0, mentre la tabella ha il campo con il nome “image” nelle versioni superiori di RadioDJ 2.0.x.x.
+Effettuata la scelta della versione dovrete estrarre il pacchetto zip della Web App, sotto la cartella precedentemente creata con il nome “WebApp” nel percorso: C:\xampp\htdocs\WebApp. 
+4) per il funzionamento della regia ed del sistema voip (di terze parti) sarà necessaria una seconda scheda audio. La prima sarà utilizzata per la diretta dell’applicazione RadioDJ, di cui siete già in possesso, mentre la seconda sarà utilizzata per effettuare le connessioni con il mixer fisico per effettuare la trasmissione con un speaker remoto;
+5) una connessione Internet in Fibra o ADSL2+, per assicurare un buon funzionamento dei servizi Voip di terze parti che utilizzerete. Si sconsiglia l’utilizzo di Hot Spot tramite cellulare, poiché c’è molta latenza è non possibile configurare il PORT-FORWARDING, quindi, l’App non sarebbe raggiungibile dall’esterno e ciò è di fondamentale importanza;
+6) configurazione di un PORT-FORWARDING che non è facoltativo, poiché è utile per la raggiungibilità della Web App dall’esterno. Il port forwarding è una procedura che permette di reindirizzare il traffico da una porta specifica del router a un dispositivo o programma all’interno della rete locale. In altre parole, se volete accedere a una pagina web o a un servizio all’interno della LAN da un luogo esterno, dovete configurare il port forwarding per consentire questo accesso.
+Ecco come impostare il port forwarding sul tuo router:
+       a) Accedi al pannello di controllo del router: Apri il browser e digita l’indirizzo IP del router (solitamente 192.168.1.1 o 192.168.0.1) nella barra degli indirizzi. Inserisci le credenziali per accedere alle impostazioni del router.
+       b) Trova la sezione Port Forwarding: Naviga nelle impostazioni avanzate o nelle opzioni di port forwarding. Questa sezione potrebbe avere nomi diversi a seconda del modello del router.
+       c) Configura il port forwarding:
+          Seleziona il tipo di servizio o applicazione per cui desideri aprire la porta (ad esempio HTTP per una pagina web e questo è il nostro caso).
+          Imposta l’indirizzo IP locale del dispositivo (il computer o il server che ospita la pagina web hanno un indirizzo IP della Lan locale).
+          Specifica la porta esterna (quella che verrà aperta) e la porta interna (la porta del dispositivo locale).
+          Scegli il protocollo (TCP o UDP. TCP nel nostro caso).
+          Abilita la regola di port forwarding.
+       Salva le modifiche: Una volta configurato, salva le impostazioni e riavvia il router se necessario.
+N.B.: Ogni router ha un’interfaccia diversa, quindi i passaggi potrebbero variare. Pertanto, non vengono fornite altre procedure per la configurazione del Port-Forwarding, poiché ogni router di un utente e diverso da quello di un altro, quindi, consulta il manuale del tuo router o cerca guide specifiche circa il Port-Forwarding su Internet.
+Chiedere all’operatore di servizi Internet se il servizio deve essere attivato dal vostro ISP o se siete abili per agire in automomia tramite il vostro router. Le regole cambiano da operatore ad operatore. Inoltre, chiedete se la configurazione del Port-Forwarding è disponibile a pagamento (chiamando numeri 199*****) oppure è totalmente gratuita.
+7) attivare un servizio DDNS (facoltativo) che fornisce un dominio fisso (www.ddns.dominio.com) attraverso cui si può raggiungere la Web App da remoto. N.B.: non obbligatorio, poiché l’app è raggiungibile anche tramite IP, ma il regista dovrà sempre comunicare gli eventuali cambiamenti dell’IP della regia allo speaker remoto;
+8) browser compatibility: Chrome Versione 126.0.6478.127 (Build ufficiale a 64 bit) , Edge Versione 126.0.2592.87 (Build ufficiale) (64 bit)  e Firefox 127.0 (64-bit). E’ necessario da parte dei browser internet il supporto del linguaggio Javascript, quindi, assicuratevi che sia attivo per potere usufruire di tutte le funzionalità offerte dall’App;
+9) risoluzione grafica minima 1600x900 pixel (HD) e dimensione minima del testo. Per risoluzioni inferiori non si garantisce la corretta impaginazione dei contenuti;
+10) PC icore5 con minimo 16GB RAM, Windows 10 o 11 e un disco SSD minimo 250GB;
+11) soluzione con mixer fisico; un dispositivo audio con almeno 3 canali (1 Mic e 2 tape/aux) ed un numero di cavi fisici il cui numero e tipologia dipende dalle connessioni che si devono effettuare. Il numero di connessioni da effettuare sono 2; la prima tra l’uscita della scheda audio 2 e l’ingresso AUX del mixer, mentre la seconda connessione tra l’USCITA del mixer e l’ingresso LINE IN della scheda audio 2. N.B.: si ricorda che la scheda audio 1 sarà utilizzata solo per l’uscita audio della regia RadioDJ;
+
+
+- 5 - File di configurazione (serv_inc.php e config.php) da editare
+I file si trovano nella cartella C:\xampp\htdocs\VostraCartellaWebApp\. In essi sono contenute righe inerenti i dati di accesso al database ed informazioni per il corretto funzionamento del plug-in Rest Server. Le informazioni devono essere coerenti con l’ambiente in cui viene eseguita la Web App. Seguono alcune righe dei file che vanno modificate con i dati corretti:
+
+//Inserire le informazioni del Server MySQL
+---------------------------------------------- serv_inc.php -----------------------------------------------------
+$mysqli_server = "127.0.0.1"; // IP del server MySQL; Se la Web App è installata sullo stesso PC su cui si trova RadioDJ, l’IP è 127.0.0.1;
+$mysqli_database	= "InserireNomeDB";// nome del databse MySQL;
+$mysqli_user = "root"; // username del database MySQL. Solitamente “root”;
+$mysqli_pass = "InserisciLaTuaPassword"; // password del database MySQL;
+$mysqli_port = "3306"; 	// numero di porta di MySQL. Il valore di default è 3306;
+$def_timezone = 'Europe/Rome'; // Setting del time-zone. Per l’Italia il valore Europe/Rome è corretto;
+-----------------------------------------------------------------------------------------------------------------------
+//Inserire i dati di configurazione del plug-in REST server.
+$ipAddress = "127.0.0.1";	IP del Rest Server. Lasciare l’IP di default 127.0.0.1;
+$restPort = "5555"; 	Porta TCP/IP. Lasciare il valore di default 5555;
+$restPassword = "InserisciLaTuaPassword"; deve essere identica a quella configurata sul plug-in presente nella regia (vedi anche Capitolo 6)
+---------------------------------------------- serv_inc.php ------------------------------------------------------
+------------------------------------------------ config.php ------------------------------------------------------
+//Inserire i dati di configurazione del plug-in REST server.
+$ipAddress = "127.0.0.1";	IP del Rest Server. Lasciare l’IP di default 127.0.0.1;
+$restPort = "5555"; 	Porta TCP/IP. Lasciare il valore di default 5555;
+$restPassword = "InserisciLaTuaPassword"; deve essere identica a quella configurata sul plug-in presente nella regia (vedi anche Capitolo 6)
+------------------------------------------------ config.php ------------------------------------------------------
+
+
+- 6 - Configurazione del plug-in Rest Server sulla regia RadioDJ ----
+Avviate la regia RadioDJ e dalla barra degli strumenti OPTIONS>PLUG-INS cliccate sul plug-in Rest Server. Si aprirà una finestra dove si dovranno configurare dei parametri come per esempio: 1) IP e porta. In questo campo inserire http://127.0.0.1:5555; 2) Password. In questo campo si dovrà inserire una password che deve corrispondere alla password che avete inserito nel file serv_inc.php o nel file config.php (vedi Capitolo 5); 3) Auto start. Fare un check sul quadratino blu. Il quadratino deve avere il segno della spunta; 4) Log Activity. Fare un check sul quadratino blu. Il quadratino deve avere il segno della spunta; 5) il tasto di avvio del servizio deve essere su started e di colore verde. Se notate che il servizio è STOPPED cliccate su stopped per avviare il servizio.
+
+
+- 7 - Download e installazione di Xampp versione 7.1.26
+Questa è la procedura per scaricare e installare XAMPP su un pc a 64bit con Windows 10/11:
+1) Accedi al sito web di XAMPP all’indirizzo www.apachefriends.org. Adesso dovete scaricare la versione per la quale l’App è stata già testata. Per ottenere questa versione selezionare “DOWNLOAD” > poi “MORE DOWNLOAD” > poi “XAMPP WINDOWS”, poi cercare in fondo ai pacchetti meno recenti e cliccare su “7.1.26” per scaricare xampp-windows-x64-7.1.26-1-VC14-installer.exe, infine doppio click sul file di installazione.
+2) Clicca sul pulsante Sì quando richiesto. In questo modo verrà avviata la procedura guidata di installazione di XAMPP.
+3) Clicca il pulsante Next. Prima di selezionare le caratteristiche di XAMPP che vuoi installare è necessario scegliere se continuare ad utilizzare l’attuale gestore del database o il nuovo gestore di database MySQL di XAMPP. Se si decidesse di non istallare il gestore di database di XAMPP non sarà necessario selezionarlo, quindi, sarà un elemento in meno da installare. Se invece vorrete utilizzare il nuovo gestore di database MariaDB (MySQL) dovrete mettere il segno di spunta su MYSQL per installare l’elemento. La configurazione è descritta nel capitolo che segue che è il nr. 8;
+4) Seleziona le caratteristiche di XAMPP che vuoi installare (nel nostro caso MariaDB[Mysql] (SI/NO), la scelta dipende dal gestore per il database che avete scelto di utilizzare (vedi punto 3), PHP (obbligatorio) e APACHE (obbligatorio)). Esamina la lista di funzionalità di XAMPP visualizzata sul lato sinistro della finestra.
+5) Clicca il pulsante Next. Seleziona la cartella di installazione. Clicca sull’icona a forma di cartella posta sulla sinistra dell’attuale directory di installazione. Clicca su OK. In questo modo la cartella selezionata verrà utilizzata come directory di installazione per XAMPP.
+6) Clicca sul pulsante Next. Deseleziona il pulsante di spunta “Learn more about Bitnami”, quindi clicca su Next ed avvierà l’installazione vera e propria di XAMPP.
+7) Una volta completata l’installazione, puoi avviare il pannello di controllo XAMPP, dove puoi avviare e fermare i servizi come Apache e MySQL (facoltativo). Puoi testare la tua installazione aprendo il tuo browser e digitando localhost, che ti porterà alla dashboard di XAMPP.
+
+
+- 8 - Scegliere il nuovo gestore di database MariaDB(MySQL) di XAMPP
+Prima di iniziare qualsiasi operazione sul database è necessario fare l’export/backup del database utilizzando l’utility DATABASE SETUP di RadioDJ che si trova sul path C:\RadioDJ\Setup\DatabaseSetup.exe. Avviare l’utility, selezionare BACKUP DATABASE e verrà visualizzato il messaggio EXPORT COMPLETED. Il file prodotto si trova all’interno della cartella C:\RadioDJ\Setup\Backup ed è un file con nome tipo (20240707 160000) e con estensione .SQL. Il nome indica l’anno, il mese, il giorno e l’ora in cui è stato creato.
+
+Se avete scelto di mantenere l’attuale gestore del database durante l’installazione di XAMPP non sarà necessario scegliere MySQL tra i servizi da installare, ma sarà utile selezionare solo i moduli PHP e APACHE.
+
+Se non volete più utilizzare l’attuale gestore di database e volete passare a MySQL di XAMPP dovete prima procedere all’installazione e avvio del servizio e configurarlo nel seguente modo:
+a) avviare phpMyAdmin di XAMPP all’indirizzo http://127.0.0.1/
+b) dalla barra degli strumenti selezionare PHPMYADMIN e poi selezionare DATABASE;
+c) si aprirà una finestra in cui è possibile inserire il nome del DATABASE e selezionare il SET di CARATTERI;
+d) inserire il NOME del DATABASE e lasciare inalterato il SET di CARATTERI di default ovvero LATIN1_SWEDISH_CI, poi selezionare il tasto CREA;
+
+e) in alto sulla sx vedrete il database che è stato appena creato insieme ad altri già esistenti. Cliccate sul database appena creato, poi andate su PRIVILEGI per creare l’utente del database e relativi permessi;
+
+f) Cliccate su AGGIUNGI ACCOUNT UTENTE e compilare le informazioni di login scegliendo:
+-- NOME UTENTE > testing010824
+-- NOME HOST > localhost
+-- PASSWORD > miapassword
+-- RE-INSERISCI PASSWORD > miapassword
+scorrere sotto su
+-- PRIVILEGI > cliccare su SELEZIONA TUTTO;
+andare su ESEGUI scorrendo fino a giù in fondo sulla dx.
+g) Adesso è necessario copiare, le info appena inserite, su un foglio, perché andranno riportate sull’utility DATABASE SETUP di RadioDJ che si trova sul path C:\RadioDJ\Setup\DatabaseSetup.exe. Avviare l’utility e inserire nell’ordine le seguenti informazioni:
+1) MySQL Server > IP_LOCALHOST < è 127.0.0.1
+2) MySQL Database > NOME_DEL_DATABASE (quello che avete scelto nel Capitolo 5)
+3) MySQL Username > TUO_USERNAME (quello che avete scelto nel Capitolo 5)
+4) MySQL Password > TUA_PASSWORD (quello che avete scelto nel Capitolo 5)
+Selezionare VALIDATE e verificare in basso a sx se il database è on-line. Se tutto è andato bene si vedrà - MSQL SERVER IS ON-LINE – di colore verde.
+Infine, editare il file serv_inc.php con le informazioni (vedi capitolo 5)
+
+
+- 9 – Spostamento delle ArtWork (copertine degli file mp3) dalla cartella della regia alla cartella della Web App
+L’operazione è necessaria per evitare la mancata visualizzazione delle ArtWork all’interno della Web App. Procedere in questo modo: dalla barra degli strumenti di RadioDJ cliccare su OPTIONS> OPTIONS>Other Settings, poi andare su Artwork Storage Path e prendere nota del percorso. Spostare tutte le ArtWork dal percorso dell’ Artwork Storage Path (quello di cui avete preso nota) a quello di Xampp esempio: C:\xampp\htdocs\CartellaApp\Album-Art.
+Poi, per evitare di fare la stessa suddetta operazione di spostamento delle ArtWork ogni volta che importate tracce audio nuove, cambiate l’Artwork Storage Path della regia con quello della Web App in modo che ogni file mp3 importato salvi l’ArtWork sul percorso della Web App: C:\xampp\htdocs\WebApp\Album-Art.
+
+
+- 10 - Avviare RadioDJ e Xampp in modalità amministratore
+Questa procedura è strettamente necessaria perché senza questo permesso non si può accedere alla modalità di configurazione per modificare alcuni parametri di RadioDJ e di Xampp. Per accedere alla modalità Amministratore selezionare l’icona dell’applicazione da avviare; in questo caso RadioDJ o Xampp, e cliccare sul pulsante destro del mouse, selezionare “Mostra altre opzioni”> Proprietà > Avanzate > poi > Esegui come amministratore (mettere il segno di spunta)> OK > Ok e uscire.
+
+
+- 11 - Collaudare l’App Rest Web Panel e soluzione dei problemi
+Al termine delle varie configurazioni e settaggi è necessario collaudare l’App in locale prima di renderla disponibile allo speaker remoto. Pertanto, all’indirizzo http:\localhost\WebApp o http:\127.0.0.1\WebApp si può visualizzare l’App. Questa è costituita da una parte destra e da una parte sinistra che mostreranno avvisi in caso di problemi di configurazione dei file serv_inc.php o config.php. La parte sx darà avviso di eventuali problemi relativi al Rest Server plug-in, mentre la parte di dx darà avviso di eventuali problemi rigurdanti il database. Per ciò che concerne la mancata visualizzazione delle Artwork ripetere i passi del capitolo 9, mentre per i problemi di visualizzazione della sezione di dx o sx si rimanda la ri-lettura dei capitoli 5 e 6. 
+
+
+- 12 - Come ottenere le massime prestazioni e le migliori condizioni di operatività dall’App Rest Web Panel Evolution
+L’App normalmente opera in primo piano (foreground) e solo in alcuni casi opererà in secondo piano (background) per esempio quando operiamo con un’altra applicazione in contemporanea. In quest’ultimo caso i timing potrebbero subire delle variazioni rispetto ai contatori della regia. Per porre rimedio ad eventuali variazioni dei timing è necessario fare un reload della pagina web, così tutti i contatori torneranno ad essere sincronizzati con quelli della regia RadioDJ.
+C’è un altro caso in cui dovrete fare un reload dell’App, ovvero quando ci sono degli errori HTTP (errore di trasmissione dati) rilevati da alcuni script dell’App e gli errori si manifestano sulla finestra di sx. I messaggi visualizzati si possono e si devono cancellare, con un reload, per evitare un blocco dell’App.
+
+
+- 13 - Modalità e ordine di avvio delle applicazioni RadioDJ, Xampp e dell’App Rest Web Panel Evolution
+a) avviare XAMPP (con o senza MySQL) ed APACHE, tramite pannello di controllo, poi verificare tramite DatabaseSetup.exe che il server MYSQL sia on-line e se tutto è ok si può passare al passo successivo b) avviare RadioDJ e quando quest’ultimo sta riproducendo delle tracce audio potete andare oltre c) avviare Rest Web Panel Evolution per effettuare un test e quest’ultimo è possibile avviando il browser web all’indirizzo: http://127.0.0.1/TuaCartellaWebApp.
+
+
+
+- 14 - Connessioni tra mixer e scheda audio per la diretta con Rest Web Panel e speaker remoto
+I contributi audio, possono essere derivati da chat (singole o di gruppo) Facebook o Skype (singole o di gruppo), ecc. e verrano canalizzati all’interno della regia tramite un mixer fisico e cablaggi di cavi fisici. Per questo setup, avrete bisogno di un mixer audio con due canali audio disponibili: uno per il microfono e l’altro per ausiliario (aux).
+Il canale del microfono sarà utilizzato nello studio in cui si trova la regia RadioDJ da uno speaker o da un regista come interfono per dialogare con lo speaker remoto. Il canale AUX deve essere collegato all’uscita della seconda scheda audio 2 (quella supplementare). Infine, l’uscita del mixer deve essere collegata all’ingresso LINE IN della stessa scheda audio. Effettuare dei test al fine di regolare i livelli dei vari slider.
+Questo setup permette una comunicazione fluida e di alta qualità durante la diretta con uno speaker remoto. Ricorda, la qualità del suono può dipendere anche dalla qualità del tuo hardware (microfono e mixer) e dalla connessione internet. Fatto ciò lo speaker remoto prima di parlare deve attivare il canale di comunicazione agendo sul tasto MICROPHONE-OFF dal pannello di controllo remoto, che diventerà ROSSO lampeggiante con l’indicazione ON-AIR. Dopo avere terminato di parlare cliccare sul tasto ON-AIR (ROSSO lampeggiante) per chiudere il canale di comunicazione e il tasto da ON-AIR (ROSSO lampeggiante) diventerà MICROPHONE-OFF, quindi, non sarà più possibile parlare.
+
+
+- 15 - Procedura e predisposizione per la trasmissione con lo speaker remoto
+Lo speaker/regista remoto dopo essersi collegato e autenticato all’indirizzo http:\INDIRIZZO_IP\WebApp\ deve porre il selettore AUTODJ/MANUAL in MANUAL (tasto di colore ROSSO). In questa modalità la playlist non verrà più generata in automatico dal track rotation, ma si dovrà creare una playlist on-the-fly, addizionando le tracce con ADD TOP o ADD BOTTOM della sezione search dalla sezione di destra. Poi, si deve operare sul selettore AUTOMATED/ASSISTED per decidere se le tracce devono andare in diretta in automatico o con l’intervento dello speaker/regista. Se avete scelto la modalità  AUTOMATED (tasto di colore VERDE) le tracce saranno avviate in automatico, mentre in modalità ASSISTED (tasto di colore ROSSO) avvierete manualmente le tracce delle playlist on-the-fly e potrete intercalare la parte vocale dello speaker con le tracce musicali.
+
+
+- 16 - Limitare l’accesso a phpMyAdmin nel tuo ambiente XAMPP solo al localhost
+Modifica le impostazioni del tuo server Apache per consentire l’accesso solo da localhost (127.0.0.1). Ecco come potresti farlo:
+       a) Trova il file di configurazione di Apache (httpd.conf), che si trova solitamente nella cartella apache\conf nella directory di installazione di XAMPP.
+       b) Apri il file httpd.conf con un editor di testo.
+       Cerca la sezione <Directory> che contiene il percorso alla directory di phpMyAdmin. Potrebbe assomigliare a questo:
+<Directory "c:/xampp/phpMyAdmin">
+
+</Directory>
+c) All’interno di questa sezione <Directory>, aggiungi le seguenti righe:
+Order Deny,Allow
+Deny from All
+Allow from 127.0.0.1
+Il tuo file dovrebbe ora assomigliare a questo:
+<Directory "c:/xampp/phpMyAdmin">
+    Order Deny,Allow
+    Deny from All
+    Allow from 127.0.0.1
+
+</Directory>
+       d) Salva il file httpd.conf e riavvia Apache.
+Questo dovrebbe limitare l’accesso a phpMyAdmin solo a localhost (127.0.0.1), che significa che solo il computer che ospita il server XAMPP può accedere a phpMyAdmin.
+Dovresti anche considerare l’uso di una password forte per l’account root di MySQL (vedi capitolo 16).
+
+
+- 17 - Utilizzare una password forte per l’account root di MySQL in XAMPP
+E’ molto importante utilizzare una password forte per l’account root di MySQL(MAriaDB) in XAMPP per migliorare la sicurezza. Ecco come puoi cambiare la password dell’account root in XAMPP:
+       a) Apri il pannello di controllo XAMPP e fai clic su ‘Shell’ per aprirlo.
+       b) Nel prompt dei comandi, digita il seguente comando per cambiare la password:
+mysqladmin.exe -u root password NuovaPassword
+Dove NuovaPassword è la nuova password che desideri impostare.
+Quando usi il comando mysqladmin.exe -u root password NuovaPassword, non devi inserire la vecchia password. Al posto di NuovaPassword, inserisci la nuova password che desideri impostare per l’account root di MySQL.
+Inoltre, è una buona pratica di sicurezza cambiare le password periodicamente. Questo aiuta a prevenire attività malevole, specialmente se utilizzi la stessa password in più account.
+Infine, assicurati di aggiornare la password nel file di configurazione di phpMyAdmin che si trova nella cartella ‘C:\xampp\phpMyAdmin’ (config.inc.php) . Dovresti cercare la seguente riga e sostituire con la tua nuova password:
+PHP
+$cfg['Servers'][$i]['password'] = 'NuovaPassword';
+
+Ricorda di riavviare Apache e MySQL dopo aver cambiato la password.
+
+- 18 - Regolazione degli accessi (autenticazione) all’App Rest Web Panel Evolution………
+L’app è dotata di un sistema di autenticazione semplice per gruppi di speaker, tramite password fissa (default), che può essere cambiata a proprio piacimento, editando il file login.php.
+
+Ecco quali parti del file editare:
+-------------------------------------------  login.php ------------------------------------------------------------
+<?php 
+	session_start();
+	$username = 'rotartsinimda';<---- cambiare l’username lasciando i doppi apici
+	$password = 'Ufolino2024$';<---- cambiare la password lasciando i doppi apici
