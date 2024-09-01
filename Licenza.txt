@@ -1,0 +1,18 @@
+Dichiarazione di licenza associata a un programma software
+
+Versione 3, 29 giugno 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+Tutti i diritti riservati.
+
+Questo programma è un software libero: puoi ridistribuirlo e/o modificarlo
+sotto i termini della Licenza Pubblica Generale GNU, come pubblicata dalla
+Free Software Foundation, sia la versione 3 della Licenza o 
+qualunque versione successiva.
+
+Questo programma viene distribuito con la speranza che sia utile,
+ma SENZA ALCUNA GARANZIA; senza nemmeno la garanzia implicita di
+COMMERCIABILITÀ o IDONEITÀ PER UN PARTICOLARE SCOPO. Consulta la
+Licenza Pubblica Generale GNU per ulteriori dettagli.
+
+Per la Licenza Pubblica Generale GNU, vedi <https://www.gnu.org/licenses/>.
